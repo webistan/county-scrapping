@@ -87,11 +87,21 @@ def main():
             print(f"🔍 Visiting Instrument: {instrument_id}")
             try:
                 data = scrape_details(page, instrument_id)
-                data["status"] = "visited"
-
-                # Update to Firebase
-                doc_ref = db.collection("mortgage_records").document(instrument_id)
-                doc_ref.set(data, merge=True)
+                print(f"✅ Scraped data for {instrument_id}")
+                print(f"Data: {data}")
+                
+                # Nest scraped data into 'metadata' and set status separately
+                update_data = {
+                    'metadata': data,
+                    'status': 'visited'
+                }
+                
+                # Update to Firebase (using nested path if configured)
+                doc_ref = db.collection(os.getenv('COUNTY_COLLECTION')) \
+                    .document(os.getenv('COUNTY_NAMESPACE')) \
+                    .collection(os.getenv('DOCUMENT_TYPE')) \
+                    .document(instrument_id)
+                doc_ref.set(update_data, merge=True)
                 print(f"✅ Updated: {instrument_id}")
             except Exception as e:
                 print(f"❌ Error on {instrument_id}: {e}")
