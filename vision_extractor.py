@@ -170,30 +170,21 @@ def extract_vision_summary(db, instrument_id: str, document_type: str):
             
             print(f"💾 Saved page {i + 1} response to {txt_filepath}")
             all_responses.append(response_text)
-
-        # 4. Combine all responses
-        combined_response = "\n\n--- PAGE BREAK ---\n\n".join(all_responses)
-        
-        # Also save combined response to a single file
-        combined_txt_filename = f"{instrument_id}.txt"
-        combined_txt_filepath = os.path.join(output_dir, combined_txt_filename)
-        
-        with open(combined_txt_filepath, 'w', encoding='utf-8') as f:
-            f.write(combined_response)
-        
-        print(f"💾 Saved combined response to {combined_txt_filepath}")
         
         print(f"✅ Successfully extracted vision summary for {instrument_id}")
 
         # 5. Update Firebase document with combined response
         print("Updating Firebase with vision_summary...")
-        doc_ref = db.collection("mortgage_records").document(instrument_id)
+        doc_ref = db.collection(os.getenv('COUNTY_COLLECTION')) \
+            .document(os.getenv('COUNTY_NAMESPACE')) \
+            .collection(os.getenv('DOCUMENT_TYPE')) \
+            .document(instrument_id)
         
         doc_ref.update({
             "status": "vision_extracted"
         })
         print(f"💾 Firebase updated successfully for {instrument_id}.")
-        return combined_response
+        return f"💾 Firebase updated successfully for {instrument_id}."
 
     except Exception as e:
         print(f"❌ An unexpected error occurred during vision extraction for {instrument_id}: {e}")
@@ -205,7 +196,7 @@ if __name__ == '__main__':
     
     # --- Test Configuration ---
     # Manually set an instrument ID that you have a downloaded PDF for.
-    TEST_INSTRUMENT_ID = "2025297466" # <-- CHANGE THIS to a valid ID for testing
+    TEST_INSTRUMENT_ID = "2025301684" # <-- CHANGE THIS to a valid ID for testing
     # ---
 
     if not all([DOCUMENT_TYPE]):
