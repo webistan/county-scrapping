@@ -23,18 +23,6 @@ os.makedirs(PDF_DIRECTORY, exist_ok=True)
 #
 from playwright.sync_api import sync_playwright, expect
 
-# ... (keep all your other imports) ...
-
-from playwright.sync_api import TimeoutError # Make sure to import TimeoutError
-
-# Make sure these imports are at the top of your file
-import os
-import requests
-from urllib.parse import urljoin, urlparse, parse_qs, unquote
-from playwright.sync_api import sync_playwright
-
-# ... (the rest of your imports) ...
-
 def download_pdf(page, instrument_id):
     """
     Downloads the PDF by using Playwright to establish a session and get cookies,
@@ -143,7 +131,10 @@ def main():
                 pdf_path = download_pdf(page, instrument_id)
 
                 # Update Firebase
-                doc_ref = db.collection("mortgage_records").document(instrument_id)
+                doc_ref = db.collection(os.getenv('COUNTY_COLLECTION', 'County')) \
+                    .document(os.getenv('COUNTY_NAMESPACE')) \
+                    .collection(os.getenv('DOCUMENT_TYPE', 'mortgage_records')) \
+                    .document(instrument_id)
                 doc_ref.set({
                     "pdf_downloaded": True,
                     "pdf_path": pdf_path,
