@@ -3,6 +3,7 @@ from playwright.sync_api import sync_playwright
 from firebase_utils.firebase_config import init_firebase
 from dotenv import load_dotenv
 import os
+import datetime
 # Load environment variables from .env file
 load_dotenv()
 
@@ -93,7 +94,8 @@ def main():
                 # Nest scraped data into 'metadata' and set status separately
                 update_data = {
                     'metadata': data,
-                    'status': 'visited'
+                    'status': 'visited',
+                    'created_at': datetime.datetime.now()
                 }
                 
                 # Update to Firebase (using nested path if configured)
