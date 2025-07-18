@@ -1,0 +1,287 @@
+{"timestamp": "2025-07-18 13:22:22", "level": "INFO", "message": "Loading environment variables.", "module": "app", "context": {"step": "init"}}
+{"timestamp": "2025-07-18 13:22:22", "level": "INFO", "message": "Determining county from environment.", "module": "app", "context": {"step": "county_selection"}}
+{"timestamp": "2025-07-18 13:22:22", "level": "INFO", "message": "Importing hillsclerk module.", "module": "app", "context": {"county": "hillsclerk"}}
+{"timestamp": "2025-07-18 13:22:23", "level": "INFO", "message": "Loading environment variables from .env.", "module": "pdf_downloader", "context": {"step": "load_env"}}
+{"timestamp": "2025-07-18 13:22:23", "level": "INFO", "message": "Loading configuration.", "module": "pdf_downloader", "context": {"step": "load_config"}}
+{"timestamp": "2025-07-18 13:22:23", "level": "INFO", "message": "Loading environment variables", "module": "config", "context": {"step": "load_env"}}
+{"timestamp": "2025-07-18 13:22:23", "level": "INFO", "message": "Base configuration set", "module": "config", "context": {"config_keys": ["BASE_URL", "BASE_URL_INSTRUMENT", "HEADLESS_MODE", "DOCUMENT_TYPE", "START_DATE", "END_DATE", "COUNTY_COLLECTION", "COUNTY_NAMESPACE", "PDF_DIRECTORY"]}}
+{"timestamp": "2025-07-18 13:22:23", "level": "INFO", "message": "Retrieved download directory", "module": "config", "context": {"download_directory": "downloads"}}
+{"timestamp": "2025-07-18 13:22:23", "level": "INFO", "message": "Computed date range", "module": "config", "context": {"date_range": "07_09_2025__07_14_2025"}}
+{"timestamp": "2025-07-18 13:22:23", "level": "INFO", "message": "Computed CSV file path", "module": "config", "context": {"csv_file": "downloads\\hillsclerk\\(MTG) MORTGAGE\\07_09_2025__07_14_2025\\OfficialRecords_Results.csv"}}
+{"timestamp": "2025-07-18 13:22:23", "level": "INFO", "message": "Configuration loaded", "module": "config", "context": {"step": "config_loaded"}}
+{"timestamp": "2025-07-18 13:22:23", "level": "INFO", "message": "Creating PDF directory if not exists.", "module": "pdf_downloader", "context": {"step": "create_directory", "path": "data/County/hillsclerk"}}
+{"timestamp": "2025-07-18 13:22:23", "level": "INFO", "message": "Running main module for county: %s", "module": "app", "context": {"step": "run_module"}}
+{"timestamp": "2025-07-18 13:22:23", "level": "INFO", "message": "Starting hillsclerk main process.", "module": "main", "context": {"step": "init"}}
+{"timestamp": "2025-07-18 13:22:23", "level": "INFO", "message": "Running search scraper.", "module": "main", "context": {"step": "search_scraper"}}
+{"timestamp": "2025-07-18 13:22:23", "level": "INFO", "message": "Running detail scraper.", "module": "main", "context": {"step": "detail_scraper"}}
+{"timestamp": "2025-07-18 13:22:23", "level": "INFO", "message": "Running PDF downloader.", "module": "main", "context": {"step": "pdf_downloader"}}
+{"timestamp": "2025-07-18 13:22:23", "level": "INFO", "message": "Hillsclerk main process completed successfully.", "module": "main", "context": {"step": "end"}}
+{"timestamp": "2025-07-18 13:22:23", "level": "INFO", "message": "Checking vision and pinecone enablement.", "module": "app", "context": {"step": "check_flags"}}
+{"timestamp": "2025-07-18 13:22:23", "level": "INFO", "message": "Starting vision extraction.", "module": "app", "context": {"step": "vision_extraction"}}
+{"timestamp": "2025-07-18 13:22:24", "level": "INFO", "message": "Loading environment variables.", "module": "vision_extractor", "context": {"step": "init"}}
+{"timestamp": "2025-07-18 13:22:24", "level": "INFO", "message": "Loading environment variables", "module": "config", "context": {"step": "load_env"}}
+{"timestamp": "2025-07-18 13:22:24", "level": "INFO", "message": "Base configuration set", "module": "config", "context": {"config_keys": ["BASE_URL", "BASE_URL_INSTRUMENT", "HEADLESS_MODE", "DOCUMENT_TYPE", "START_DATE", "END_DATE", "COUNTY_COLLECTION", "COUNTY_NAMESPACE", "PDF_DIRECTORY"]}}
+{"timestamp": "2025-07-18 13:22:24", "level": "INFO", "message": "Retrieved download directory", "module": "config", "context": {"download_directory": "downloads"}}
+{"timestamp": "2025-07-18 13:22:24", "level": "INFO", "message": "Computed date range", "module": "config", "context": {"date_range": "07_09_2025__07_14_2025"}}
+{"timestamp": "2025-07-18 13:22:24", "level": "INFO", "message": "Computed CSV file path", "module": "config", "context": {"csv_file": "downloads\\hillsclerk\\(MTG) MORTGAGE\\07_09_2025__07_14_2025\\OfficialRecords_Results.csv"}}
+{"timestamp": "2025-07-18 13:22:24", "level": "INFO", "message": "Configuration loaded", "module": "config", "context": {"step": "config_loaded"}}
+{"timestamp": "2025-07-18 13:22:24", "level": "INFO", "message": "Initializing OpenAI Client.", "module": "vision_extractor", "context": {"step": "openai_init"}}
+{"timestamp": "2025-07-18 13:22:24", "level": "INFO", "message": "Starting main function.", "module": "vision_extractor", "context": {"step": "main_start"}}
+{"timestamp": "2025-07-18 13:22:24", "level": "INFO", "message": "Initialized Firebase.", "module": "vision_extractor", "context": {"step": "firebase_init"}}
+{"timestamp": "2025-07-18 13:22:28", "level": "INFO", "message": "Main function completed.", "module": "vision_extractor", "context": {"step": "main_end"}}
+{"timestamp": "2025-07-18 13:22:28", "level": "INFO", "message": "Vision extraction completed.", "module": "app", "context": {"step": "vision_complete"}}
+{"timestamp": "2025-07-18 13:22:28", "level": "INFO", "message": "Process completed successfully.", "module": "app", "context": {"step": "end"}}
+{"timestamp": "2025-07-18 13:23:25", "level": "INFO", "message": "Loading environment variables.", "module": "app", "context": {"step": "init"}}
+{"timestamp": "2025-07-18 13:23:25", "level": "INFO", "message": "Determining county from environment.", "module": "app", "context": {"step": "county_selection"}}
+{"timestamp": "2025-07-18 13:23:25", "level": "INFO", "message": "Importing hillsclerk module.", "module": "app", "context": {"county": "hillsclerk"}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Loading environment variables from .env.", "module": "pdf_downloader", "context": {"step": "load_env"}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Loading configuration.", "module": "pdf_downloader", "context": {"step": "load_config"}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Loading environment variables", "module": "config", "context": {"step": "load_env"}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Base configuration set", "module": "config", "context": {"config_keys": ["BASE_URL", "BASE_URL_INSTRUMENT", "HEADLESS_MODE", "DOCUMENT_TYPE", "START_DATE", "END_DATE", "COUNTY_COLLECTION", "COUNTY_NAMESPACE", "PDF_DIRECTORY"]}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Retrieved download directory", "module": "config", "context": {"download_directory": "downloads"}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Computed date range", "module": "config", "context": {"date_range": "07_09_2025__07_14_2025"}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Computed CSV file path", "module": "config", "context": {"csv_file": "downloads\\hillsclerk\\(MTG) MORTGAGE\\07_09_2025__07_14_2025\\OfficialRecords_Results.csv"}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Configuration loaded", "module": "config", "context": {"step": "config_loaded"}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Creating PDF directory if not exists.", "module": "pdf_downloader", "context": {"step": "create_directory", "path": "data/County/hillsclerk"}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Running main module for county: %s", "module": "app", "context": {"step": "run_module"}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Starting hillsclerk main process.", "module": "main", "context": {"step": "init"}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Running search scraper.", "module": "main", "context": {"step": "search_scraper"}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Running detail scraper.", "module": "main", "context": {"step": "detail_scraper"}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Running PDF downloader.", "module": "main", "context": {"step": "pdf_downloader"}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Hillsclerk main process completed successfully.", "module": "main", "context": {"step": "end"}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Checking vision and pinecone enablement.", "module": "app", "context": {"step": "check_flags"}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Starting vision extraction.", "module": "app", "context": {"step": "vision_extraction"}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Loading environment variables.", "module": "vision_extractor", "context": {"step": "init"}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Loading environment variables", "module": "config", "context": {"step": "load_env"}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Base configuration set", "module": "config", "context": {"config_keys": ["BASE_URL", "BASE_URL_INSTRUMENT", "HEADLESS_MODE", "DOCUMENT_TYPE", "START_DATE", "END_DATE", "COUNTY_COLLECTION", "COUNTY_NAMESPACE", "PDF_DIRECTORY"]}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Retrieved download directory", "module": "config", "context": {"download_directory": "downloads"}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Computed date range", "module": "config", "context": {"date_range": "07_09_2025__07_14_2025"}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Computed CSV file path", "module": "config", "context": {"csv_file": "downloads\\hillsclerk\\(MTG) MORTGAGE\\07_09_2025__07_14_2025\\OfficialRecords_Results.csv"}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Configuration loaded", "module": "config", "context": {"step": "config_loaded"}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Initializing OpenAI Client.", "module": "vision_extractor", "context": {"step": "openai_init"}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Starting main function.", "module": "vision_extractor", "context": {"step": "main_start"}}
+{"timestamp": "2025-07-18 13:23:26", "level": "INFO", "message": "Initialized Firebase.", "module": "vision_extractor", "context": {"step": "firebase_init"}}
+{"timestamp": "2025-07-18 13:23:31", "level": "INFO", "message": "Processing record.", "module": "vision_extractor", "context": {"instrument_id": "2025304183"}}
+{"timestamp": "2025-07-18 13:23:31", "level": "INFO", "message": "Starting vision extraction.", "module": "vision_extractor", "context": {"instrument_id": "2025304183", "document_type": "mortgage_records"}}
+{"timestamp": "2025-07-18 13:23:31", "level": "INFO", "message": "Converting PDF to images.", "module": "vision_extractor", "context": {"instrument_id": "2025304183"}}
+{"timestamp": "2025-07-18 13:23:31", "level": "INFO", "message": "Starting PDF to base64 images conversion.", "module": "vision_extractor", "context": {"pdf_path": "data/County/hillsclerk\\2025304183.pdf", "max_pages": 2}}
+{"timestamp": "2025-07-18 13:23:31", "level": "INFO", "message": "PDF opened successfully.", "module": "vision_extractor", "context": {"pdf_path": "data/County/hillsclerk\\2025304183.pdf", "total_pages": 24}}
+{"timestamp": "2025-07-18 13:23:31", "level": "INFO", "message": "Determined pages to process.", "module": "vision_extractor", "context": {"num_pages": 2}}
+{"timestamp": "2025-07-18 13:23:31", "level": "INFO", "message": "Saved image to file.", "module": "vision_extractor", "context": {"image_path": "data/images/County/hillsclerk\\2025304183_page_1.png"}}
+{"timestamp": "2025-07-18 13:23:31", "level": "INFO", "message": "Saved image to file.", "module": "vision_extractor", "context": {"image_path": "data/images/County/hillsclerk\\2025304183_page_2.png"}}
+{"timestamp": "2025-07-18 13:23:31", "level": "INFO", "message": "PDF conversion completed.", "module": "vision_extractor", "context": {"num_images": 2}}
+{"timestamp": "2025-07-18 13:23:31", "level": "INFO", "message": "Prepared vision prompt.", "module": "vision_extractor", "context": {"instrument_id": "2025304183"}}
+{"timestamp": "2025-07-18 13:23:31", "level": "INFO", "message": "Created output directory for text files.", "module": "vision_extractor", "context": {"output_dir": "data/extracted_text/County/hillsclerk"}}
+{"timestamp": "2025-07-18 13:23:31", "level": "INFO", "message": "Processing page.", "module": "vision_extractor", "context": {"instrument_id": "2025304183", "page_num": 1}}
+{"timestamp": "2025-07-18 13:23:59", "level": "INFO", "message": "Saved page response to file.", "module": "vision_extractor", "context": {"txt_filepath": "data/extracted_text/County/hillsclerk\\2025304183_page_1.txt"}}
+{"timestamp": "2025-07-18 13:23:59", "level": "INFO", "message": "Processing page.", "module": "vision_extractor", "context": {"instrument_id": "2025304183", "page_num": 2}}
+{"timestamp": "2025-07-18 13:24:30", "level": "INFO", "message": "Saved page response to file.", "module": "vision_extractor", "context": {"txt_filepath": "data/extracted_text/County/hillsclerk\\2025304183_page_2.txt"}}
+{"timestamp": "2025-07-18 13:24:30", "level": "INFO", "message": "Vision extraction completed successfully.", "module": "vision_extractor", "context": {"instrument_id": "2025304183"}}
+{"timestamp": "2025-07-18 13:24:30", "level": "INFO", "message": "Updating Firebase with vision status.", "module": "vision_extractor", "context": {"instrument_id": "2025304183"}}
+{"timestamp": "2025-07-18 13:24:30", "level": "INFO", "message": "Firebase updated successfully.", "module": "vision_extractor", "context": {"instrument_id": "2025304183"}}
+{"timestamp": "2025-07-18 13:24:30", "level": "INFO", "message": "Processed record successfully.", "module": "vision_extractor", "context": {"instrument_id": "2025304183"}}
+{"timestamp": "2025-07-18 13:24:30", "level": "INFO", "message": "Processing record.", "module": "vision_extractor", "context": {"instrument_id": "2025304194"}}
+{"timestamp": "2025-07-18 13:24:30", "level": "INFO", "message": "Starting vision extraction.", "module": "vision_extractor", "context": {"instrument_id": "2025304194", "document_type": "mortgage_records"}}
+{"timestamp": "2025-07-18 13:24:30", "level": "INFO", "message": "Converting PDF to images.", "module": "vision_extractor", "context": {"instrument_id": "2025304194"}}
+{"timestamp": "2025-07-18 13:24:30", "level": "INFO", "message": "Starting PDF to base64 images conversion.", "module": "vision_extractor", "context": {"pdf_path": "data/County/hillsclerk\\2025304194.pdf", "max_pages": 2}}
+{"timestamp": "2025-07-18 13:24:30", "level": "INFO", "message": "PDF opened successfully.", "module": "vision_extractor", "context": {"pdf_path": "data/County/hillsclerk\\2025304194.pdf", "total_pages": 10}}
+{"timestamp": "2025-07-18 13:24:30", "level": "INFO", "message": "Determined pages to process.", "module": "vision_extractor", "context": {"num_pages": 2}}
+{"timestamp": "2025-07-18 13:24:30", "level": "INFO", "message": "Saved image to file.", "module": "vision_extractor", "context": {"image_path": "data/images/County/hillsclerk\\2025304194_page_1.png"}}
+{"timestamp": "2025-07-18 13:24:31", "level": "INFO", "message": "Saved image to file.", "module": "vision_extractor", "context": {"image_path": "data/images/County/hillsclerk\\2025304194_page_2.png"}}
+{"timestamp": "2025-07-18 13:24:31", "level": "INFO", "message": "PDF conversion completed.", "module": "vision_extractor", "context": {"num_images": 2}}
+{"timestamp": "2025-07-18 13:24:31", "level": "INFO", "message": "Prepared vision prompt.", "module": "vision_extractor", "context": {"instrument_id": "2025304194"}}
+{"timestamp": "2025-07-18 13:24:31", "level": "INFO", "message": "Created output directory for text files.", "module": "vision_extractor", "context": {"output_dir": "data/extracted_text/County/hillsclerk"}}
+{"timestamp": "2025-07-18 13:24:31", "level": "INFO", "message": "Processing page.", "module": "vision_extractor", "context": {"instrument_id": "2025304194", "page_num": 1}}
+{"timestamp": "2025-07-18 13:24:56", "level": "INFO", "message": "Saved page response to file.", "module": "vision_extractor", "context": {"txt_filepath": "data/extracted_text/County/hillsclerk\\2025304194_page_1.txt"}}
+{"timestamp": "2025-07-18 13:24:56", "level": "INFO", "message": "Processing page.", "module": "vision_extractor", "context": {"instrument_id": "2025304194", "page_num": 2}}
+{"timestamp": "2025-07-18 13:25:23", "level": "INFO", "message": "Saved page response to file.", "module": "vision_extractor", "context": {"txt_filepath": "data/extracted_text/County/hillsclerk\\2025304194_page_2.txt"}}
+{"timestamp": "2025-07-18 13:25:23", "level": "INFO", "message": "Vision extraction completed successfully.", "module": "vision_extractor", "context": {"instrument_id": "2025304194"}}
+{"timestamp": "2025-07-18 13:25:23", "level": "INFO", "message": "Updating Firebase with vision status.", "module": "vision_extractor", "context": {"instrument_id": "2025304194"}}
+{"timestamp": "2025-07-18 13:25:24", "level": "INFO", "message": "Firebase updated successfully.", "module": "vision_extractor", "context": {"instrument_id": "2025304194"}}
+{"timestamp": "2025-07-18 13:25:24", "level": "INFO", "message": "Processed record successfully.", "module": "vision_extractor", "context": {"instrument_id": "2025304194"}}
+{"timestamp": "2025-07-18 13:25:24", "level": "INFO", "message": "Main function completed.", "module": "vision_extractor", "context": {"step": "main_end"}}
+{"timestamp": "2025-07-18 13:25:24", "level": "INFO", "message": "Vision extraction completed.", "module": "app", "context": {"step": "vision_complete"}}
+{"timestamp": "2025-07-18 13:25:24", "level": "INFO", "message": "Process completed successfully.", "module": "app", "context": {"step": "end"}}
+{"timestamp": "2025-07-18 13:27:16", "level": "INFO", "message": "Loading environment variables.", "module": "app", "context": {"step": "init"}}
+{"timestamp": "2025-07-18 13:27:16", "level": "INFO", "message": "Determining county from environment.", "module": "app", "context": {"step": "county_selection"}}
+{"timestamp": "2025-07-18 13:27:16", "level": "INFO", "message": "Importing hillsclerk module.", "module": "app", "context": {"county": "hillsclerk"}}
+{"timestamp": "2025-07-18 13:27:16", "level": "INFO", "message": "Loading environment variables from .env.", "module": "pdf_downloader", "context": {"step": "load_env"}}
+{"timestamp": "2025-07-18 13:27:16", "level": "INFO", "message": "Loading configuration.", "module": "pdf_downloader", "context": {"step": "load_config"}}
+{"timestamp": "2025-07-18 13:27:16", "level": "INFO", "message": "Loading environment variables", "module": "config", "context": {"step": "load_env"}}
+{"timestamp": "2025-07-18 13:27:16", "level": "INFO", "message": "Base configuration set", "module": "config", "context": {"config_keys": ["BASE_URL", "BASE_URL_INSTRUMENT", "HEADLESS_MODE", "DOCUMENT_TYPE", "START_DATE", "END_DATE", "COUNTY_COLLECTION", "COUNTY_NAMESPACE", "PDF_DIRECTORY"]}}
+{"timestamp": "2025-07-18 13:27:16", "level": "INFO", "message": "Retrieved download directory", "module": "config", "context": {"download_directory": "downloads"}}
+{"timestamp": "2025-07-18 13:27:16", "level": "INFO", "message": "Computed date range", "module": "config", "context": {"date_range": "07_09_2025__07_14_2025"}}
+{"timestamp": "2025-07-18 13:27:16", "level": "INFO", "message": "Computed CSV file path", "module": "config", "context": {"csv_file": "downloads\\hillsclerk\\(MTG) MORTGAGE\\07_09_2025__07_14_2025\\OfficialRecords_Results.csv"}}
+{"timestamp": "2025-07-18 13:27:16", "level": "INFO", "message": "Configuration loaded", "module": "config", "context": {"step": "config_loaded"}}
+{"timestamp": "2025-07-18 13:27:16", "level": "INFO", "message": "Creating PDF directory if not exists.", "module": "pdf_downloader", "context": {"step": "create_directory", "path": "data/County/hillsclerk"}}
+{"timestamp": "2025-07-18 13:27:16", "level": "INFO", "message": "Running main module for county: %s", "module": "app", "context": {"step": "run_module"}}
+{"timestamp": "2025-07-18 13:27:16", "level": "INFO", "message": "Starting hillsclerk main process.", "module": "main", "context": {"step": "init"}}
+{"timestamp": "2025-07-18 13:27:16", "level": "INFO", "message": "Running search scraper.", "module": "main", "context": {"step": "search_scraper"}}
+{"timestamp": "2025-07-18 13:27:16", "level": "INFO", "message": "Running detail scraper.", "module": "main", "context": {"step": "detail_scraper"}}
+{"timestamp": "2025-07-18 13:27:16", "level": "INFO", "message": "Running PDF downloader.", "module": "main", "context": {"step": "pdf_downloader"}}
+{"timestamp": "2025-07-18 13:27:16", "level": "INFO", "message": "Hillsclerk main process completed successfully.", "module": "main", "context": {"step": "end"}}
+{"timestamp": "2025-07-18 13:27:16", "level": "INFO", "message": "Checking vision and pinecone enablement.", "module": "app", "context": {"step": "check_flags"}}
+{"timestamp": "2025-07-18 13:27:16", "level": "INFO", "message": "Starting vision extraction.", "module": "app", "context": {"step": "vision_extraction"}}
+{"timestamp": "2025-07-18 13:27:17", "level": "INFO", "message": "Loading environment variables.", "module": "vision_extractor", "context": {"step": "init"}}
+{"timestamp": "2025-07-18 13:27:17", "level": "INFO", "message": "Loading environment variables", "module": "config", "context": {"step": "load_env"}}
+{"timestamp": "2025-07-18 13:27:17", "level": "INFO", "message": "Base configuration set", "module": "config", "context": {"config_keys": ["BASE_URL", "BASE_URL_INSTRUMENT", "HEADLESS_MODE", "DOCUMENT_TYPE", "START_DATE", "END_DATE", "COUNTY_COLLECTION", "COUNTY_NAMESPACE", "PDF_DIRECTORY"]}}
+{"timestamp": "2025-07-18 13:27:17", "level": "INFO", "message": "Retrieved download directory", "module": "config", "context": {"download_directory": "downloads"}}
+{"timestamp": "2025-07-18 13:27:17", "level": "INFO", "message": "Computed date range", "module": "config", "context": {"date_range": "07_09_2025__07_14_2025"}}
+{"timestamp": "2025-07-18 13:27:17", "level": "INFO", "message": "Computed CSV file path", "module": "config", "context": {"csv_file": "downloads\\hillsclerk\\(MTG) MORTGAGE\\07_09_2025__07_14_2025\\OfficialRecords_Results.csv"}}
+{"timestamp": "2025-07-18 13:27:17", "level": "INFO", "message": "Configuration loaded", "module": "config", "context": {"step": "config_loaded"}}
+{"timestamp": "2025-07-18 13:27:17", "level": "INFO", "message": "Initializing OpenAI Client.", "module": "vision_extractor", "context": {"step": "openai_init"}}
+{"timestamp": "2025-07-18 13:27:17", "level": "INFO", "message": "Starting main function.", "module": "vision_extractor", "context": {"step": "main_start"}}
+{"timestamp": "2025-07-18 13:27:17", "level": "INFO", "message": "Initialized Firebase.", "module": "vision_extractor", "context": {"step": "firebase_init"}}
+{"timestamp": "2025-07-18 13:27:21", "level": "INFO", "message": "Main function completed.", "module": "vision_extractor", "context": {"step": "main_end"}}
+{"timestamp": "2025-07-18 13:27:21", "level": "INFO", "message": "Vision extraction completed.", "module": "app", "context": {"step": "vision_complete"}}
+{"timestamp": "2025-07-18 13:27:21", "level": "INFO", "message": "Starting Pinecone upload.", "module": "app", "context": {"step": "pinecone_upload"}}
+{"timestamp": "2025-07-18 13:27:21", "level": "INFO", "message": "Loading environment variables", "module": "config", "context": {"step": "load_env"}}
+{"timestamp": "2025-07-18 13:27:21", "level": "INFO", "message": "Base configuration set", "module": "config", "context": {"config_keys": ["BASE_URL", "BASE_URL_INSTRUMENT", "HEADLESS_MODE", "DOCUMENT_TYPE", "START_DATE", "END_DATE", "COUNTY_COLLECTION", "COUNTY_NAMESPACE", "PDF_DIRECTORY"]}}
+{"timestamp": "2025-07-18 13:27:21", "level": "INFO", "message": "Retrieved download directory", "module": "config", "context": {"download_directory": "downloads"}}
+{"timestamp": "2025-07-18 13:27:21", "level": "INFO", "message": "Computed date range", "module": "config", "context": {"date_range": "07_09_2025__07_14_2025"}}
+{"timestamp": "2025-07-18 13:27:21", "level": "INFO", "message": "Computed CSV file path", "module": "config", "context": {"csv_file": "downloads\\hillsclerk\\(MTG) MORTGAGE\\07_09_2025__07_14_2025\\OfficialRecords_Results.csv"}}
+{"timestamp": "2025-07-18 13:27:21", "level": "INFO", "message": "Configuration loaded", "module": "config", "context": {"step": "config_loaded"}}
+{"timestamp": "2025-07-18 13:27:21", "level": "INFO", "message": "Initializing Pinecone uploader.", "module": "pinecone_uploader", "context": {"step": "init"}}
+{"timestamp": "2025-07-18 13:27:22", "level": "INFO", "message": "Processing instrument.", "module": "pinecone_uploader", "context": {"instrument_id": "2025304183"}}
+{"timestamp": "2025-07-18 13:27:22", "level": "INFO", "message": "Processing instrument.", "module": "pinecone_uploader", "context": {"instrument_id": "2025304194"}}
+{"timestamp": "2025-07-18 13:27:22", "level": "INFO", "message": "Pinecone upload completed.", "module": "app", "context": {"step": "pinecone_complete"}}
+{"timestamp": "2025-07-18 13:27:22", "level": "INFO", "message": "Process completed successfully.", "module": "app", "context": {"step": "end"}}
+{"timestamp": "2025-07-18 13:31:13", "level": "INFO", "message": "Loading environment variables.", "module": "app", "context": {"step": "init"}}
+{"timestamp": "2025-07-18 13:31:13", "level": "INFO", "message": "Determining county from environment.", "module": "app", "context": {"step": "county_selection"}}
+{"timestamp": "2025-07-18 13:31:13", "level": "INFO", "message": "Importing hillsclerk module.", "module": "app", "context": {"county": "hillsclerk"}}
+{"timestamp": "2025-07-18 13:31:16", "level": "INFO", "message": "Loading environment variables from .env.", "module": "pdf_downloader", "context": {"step": "load_env"}}
+{"timestamp": "2025-07-18 13:31:16", "level": "INFO", "message": "Loading configuration.", "module": "pdf_downloader", "context": {"step": "load_config"}}
+{"timestamp": "2025-07-18 13:31:16", "level": "INFO", "message": "Loading environment variables", "module": "config", "context": {"step": "load_env"}}
+{"timestamp": "2025-07-18 13:31:16", "level": "INFO", "message": "Base configuration set", "module": "config", "context": {"config_keys": ["BASE_URL", "BASE_URL_INSTRUMENT", "HEADLESS_MODE", "DOCUMENT_TYPE", "START_DATE", "END_DATE", "COUNTY_COLLECTION", "COUNTY_NAMESPACE", "PDF_DIRECTORY"]}}
+{"timestamp": "2025-07-18 13:31:16", "level": "INFO", "message": "Retrieved download directory", "module": "config", "context": {"download_directory": "downloads"}}
+{"timestamp": "2025-07-18 13:31:16", "level": "INFO", "message": "Computed date range", "module": "config", "context": {"date_range": "07_09_2025__07_14_2025"}}
+{"timestamp": "2025-07-18 13:31:16", "level": "INFO", "message": "Computed CSV file path", "module": "config", "context": {"csv_file": "downloads\\hillsclerk\\(MTG) MORTGAGE\\07_09_2025__07_14_2025\\OfficialRecords_Results.csv"}}
+{"timestamp": "2025-07-18 13:31:16", "level": "INFO", "message": "Configuration loaded", "module": "config", "context": {"step": "config_loaded"}}
+{"timestamp": "2025-07-18 13:31:16", "level": "INFO", "message": "Creating PDF directory if not exists.", "module": "pdf_downloader", "context": {"step": "create_directory", "path": "data/County/hillsclerk"}}
+{"timestamp": "2025-07-18 13:31:16", "level": "INFO", "message": "Running main module for county: %s", "module": "app", "context": {"step": "run_module"}}
+{"timestamp": "2025-07-18 13:31:16", "level": "INFO", "message": "Starting hillsclerk main process.", "module": "main", "context": {"step": "init"}}
+{"timestamp": "2025-07-18 13:31:16", "level": "INFO", "message": "Running search scraper.", "module": "main", "context": {"step": "search_scraper"}}
+{"timestamp": "2025-07-18 13:31:16", "level": "INFO", "message": "Running detail scraper.", "module": "main", "context": {"step": "detail_scraper"}}
+{"timestamp": "2025-07-18 13:31:16", "level": "INFO", "message": "Running PDF downloader.", "module": "main", "context": {"step": "pdf_downloader"}}
+{"timestamp": "2025-07-18 13:31:16", "level": "INFO", "message": "Hillsclerk main process completed successfully.", "module": "main", "context": {"step": "end"}}
+{"timestamp": "2025-07-18 13:31:16", "level": "INFO", "message": "Checking vision and pinecone enablement.", "module": "app", "context": {"step": "check_flags"}}
+{"timestamp": "2025-07-18 13:31:16", "level": "INFO", "message": "Starting vision extraction.", "module": "app", "context": {"step": "vision_extraction"}}
+{"timestamp": "2025-07-18 13:31:17", "level": "INFO", "message": "Loading environment variables.", "module": "vision_extractor", "context": {"step": "init"}}
+{"timestamp": "2025-07-18 13:31:17", "level": "INFO", "message": "Loading environment variables", "module": "config", "context": {"step": "load_env"}}
+{"timestamp": "2025-07-18 13:31:17", "level": "INFO", "message": "Base configuration set", "module": "config", "context": {"config_keys": ["BASE_URL", "BASE_URL_INSTRUMENT", "HEADLESS_MODE", "DOCUMENT_TYPE", "START_DATE", "END_DATE", "COUNTY_COLLECTION", "COUNTY_NAMESPACE", "PDF_DIRECTORY"]}}
+{"timestamp": "2025-07-18 13:31:17", "level": "INFO", "message": "Retrieved download directory", "module": "config", "context": {"download_directory": "downloads"}}
+{"timestamp": "2025-07-18 13:31:17", "level": "INFO", "message": "Computed date range", "module": "config", "context": {"date_range": "07_09_2025__07_14_2025"}}
+{"timestamp": "2025-07-18 13:31:17", "level": "INFO", "message": "Computed CSV file path", "module": "config", "context": {"csv_file": "downloads\\hillsclerk\\(MTG) MORTGAGE\\07_09_2025__07_14_2025\\OfficialRecords_Results.csv"}}
+{"timestamp": "2025-07-18 13:31:17", "level": "INFO", "message": "Configuration loaded", "module": "config", "context": {"step": "config_loaded"}}
+{"timestamp": "2025-07-18 13:31:17", "level": "INFO", "message": "Initializing OpenAI Client.", "module": "vision_extractor", "context": {"step": "openai_init"}}
+{"timestamp": "2025-07-18 13:31:17", "level": "INFO", "message": "Starting main function.", "module": "vision_extractor", "context": {"step": "main_start"}}
+{"timestamp": "2025-07-18 13:31:17", "level": "INFO", "message": "Initialized Firebase.", "module": "vision_extractor", "context": {"step": "firebase_init"}}
+{"timestamp": "2025-07-18 13:31:21", "level": "INFO", "message": "Main function completed.", "module": "vision_extractor", "context": {"step": "main_end"}}
+{"timestamp": "2025-07-18 13:31:21", "level": "INFO", "message": "Vision extraction completed.", "module": "app", "context": {"step": "vision_complete"}}
+{"timestamp": "2025-07-18 13:31:21", "level": "INFO", "message": "Process completed successfully.", "module": "app", "context": {"step": "end"}}
+{"timestamp": "2025-07-18 13:31:44", "level": "INFO", "message": "Loading environment variables.", "module": "app", "context": {"step": "init"}}
+{"timestamp": "2025-07-18 13:31:44", "level": "INFO", "message": "Determining county from environment.", "module": "app", "context": {"step": "county_selection"}}
+{"timestamp": "2025-07-18 13:31:44", "level": "INFO", "message": "Importing hillsclerk module.", "module": "app", "context": {"county": "hillsclerk"}}
+{"timestamp": "2025-07-18 13:31:45", "level": "INFO", "message": "Loading environment variables from .env.", "module": "pdf_downloader", "context": {"step": "load_env"}}
+{"timestamp": "2025-07-18 13:31:45", "level": "INFO", "message": "Loading configuration.", "module": "pdf_downloader", "context": {"step": "load_config"}}
+{"timestamp": "2025-07-18 13:31:45", "level": "INFO", "message": "Loading environment variables", "module": "config", "context": {"step": "load_env"}}
+{"timestamp": "2025-07-18 13:31:45", "level": "INFO", "message": "Base configuration set", "module": "config", "context": {"config_keys": ["BASE_URL", "BASE_URL_INSTRUMENT", "HEADLESS_MODE", "DOCUMENT_TYPE", "START_DATE", "END_DATE", "COUNTY_COLLECTION", "COUNTY_NAMESPACE", "PDF_DIRECTORY"]}}
+{"timestamp": "2025-07-18 13:31:45", "level": "INFO", "message": "Retrieved download directory", "module": "config", "context": {"download_directory": "downloads"}}
+{"timestamp": "2025-07-18 13:31:45", "level": "INFO", "message": "Computed date range", "module": "config", "context": {"date_range": "07_09_2025__07_14_2025"}}
+{"timestamp": "2025-07-18 13:31:45", "level": "INFO", "message": "Computed CSV file path", "module": "config", "context": {"csv_file": "downloads\\hillsclerk\\(MTG) MORTGAGE\\07_09_2025__07_14_2025\\OfficialRecords_Results.csv"}}
+{"timestamp": "2025-07-18 13:31:45", "level": "INFO", "message": "Configuration loaded", "module": "config", "context": {"step": "config_loaded"}}
+{"timestamp": "2025-07-18 13:31:45", "level": "INFO", "message": "Creating PDF directory if not exists.", "module": "pdf_downloader", "context": {"step": "create_directory", "path": "data/County/hillsclerk"}}
+{"timestamp": "2025-07-18 13:31:45", "level": "INFO", "message": "Running main module for county: %s", "module": "app", "context": {"step": "run_module"}}
+{"timestamp": "2025-07-18 13:31:45", "level": "INFO", "message": "Starting hillsclerk main process.", "module": "main", "context": {"step": "init"}}
+{"timestamp": "2025-07-18 13:31:45", "level": "INFO", "message": "Running search scraper.", "module": "main", "context": {"step": "search_scraper"}}
+{"timestamp": "2025-07-18 13:31:45", "level": "INFO", "message": "Running detail scraper.", "module": "main", "context": {"step": "detail_scraper"}}
+{"timestamp": "2025-07-18 13:31:45", "level": "INFO", "message": "Running PDF downloader.", "module": "main", "context": {"step": "pdf_downloader"}}
+{"timestamp": "2025-07-18 13:31:45", "level": "INFO", "message": "Hillsclerk main process completed successfully.", "module": "main", "context": {"step": "end"}}
+{"timestamp": "2025-07-18 13:31:45", "level": "INFO", "message": "Checking vision and pinecone enablement.", "module": "app", "context": {"step": "check_flags"}}
+{"timestamp": "2025-07-18 13:31:45", "level": "INFO", "message": "Starting vision extraction.", "module": "app", "context": {"step": "vision_extraction"}}
+{"timestamp": "2025-07-18 13:31:46", "level": "INFO", "message": "Loading environment variables.", "module": "vision_extractor", "context": {"step": "init"}}
+{"timestamp": "2025-07-18 13:31:46", "level": "INFO", "message": "Loading environment variables", "module": "config", "context": {"step": "load_env"}}
+{"timestamp": "2025-07-18 13:31:46", "level": "INFO", "message": "Base configuration set", "module": "config", "context": {"config_keys": ["BASE_URL", "BASE_URL_INSTRUMENT", "HEADLESS_MODE", "DOCUMENT_TYPE", "START_DATE", "END_DATE", "COUNTY_COLLECTION", "COUNTY_NAMESPACE", "PDF_DIRECTORY"]}}
+{"timestamp": "2025-07-18 13:31:46", "level": "INFO", "message": "Retrieved download directory", "module": "config", "context": {"download_directory": "downloads"}}
+{"timestamp": "2025-07-18 13:31:46", "level": "INFO", "message": "Computed date range", "module": "config", "context": {"date_range": "07_09_2025__07_14_2025"}}
+{"timestamp": "2025-07-18 13:31:46", "level": "INFO", "message": "Computed CSV file path", "module": "config", "context": {"csv_file": "downloads\\hillsclerk\\(MTG) MORTGAGE\\07_09_2025__07_14_2025\\OfficialRecords_Results.csv"}}
+{"timestamp": "2025-07-18 13:31:46", "level": "INFO", "message": "Configuration loaded", "module": "config", "context": {"step": "config_loaded"}}
+{"timestamp": "2025-07-18 13:31:46", "level": "INFO", "message": "Initializing OpenAI Client.", "module": "vision_extractor", "context": {"step": "openai_init"}}
+{"timestamp": "2025-07-18 13:31:46", "level": "INFO", "message": "Starting main function.", "module": "vision_extractor", "context": {"step": "main_start"}}
+{"timestamp": "2025-07-18 13:31:46", "level": "INFO", "message": "Initialized Firebase.", "module": "vision_extractor", "context": {"step": "firebase_init"}}
+{"timestamp": "2025-07-18 13:31:50", "level": "INFO", "message": "Processing record.", "module": "vision_extractor", "context": {"instrument_id": "2025304183"}}
+{"timestamp": "2025-07-18 13:31:50", "level": "INFO", "message": "Starting vision extraction.", "module": "vision_extractor", "context": {"instrument_id": "2025304183", "document_type": "mortgage_records"}}
+{"timestamp": "2025-07-18 13:31:50", "level": "INFO", "message": "Converting PDF to images.", "module": "vision_extractor", "context": {"instrument_id": "2025304183"}}
+{"timestamp": "2025-07-18 13:31:50", "level": "INFO", "message": "Starting PDF to base64 images conversion.", "module": "vision_extractor", "context": {"pdf_path": "data/County/hillsclerk\\2025304183.pdf", "max_pages": 2}}
+{"timestamp": "2025-07-18 13:31:50", "level": "INFO", "message": "PDF opened successfully.", "module": "vision_extractor", "context": {"pdf_path": "data/County/hillsclerk\\2025304183.pdf", "total_pages": 24}}
+{"timestamp": "2025-07-18 13:31:50", "level": "INFO", "message": "Determined pages to process.", "module": "vision_extractor", "context": {"num_pages": 2}}
+{"timestamp": "2025-07-18 13:31:50", "level": "INFO", "message": "Saved image to file.", "module": "vision_extractor", "context": {"image_path": "data/images/County/hillsclerk\\2025304183_page_1.png"}}
+{"timestamp": "2025-07-18 13:31:51", "level": "INFO", "message": "Saved image to file.", "module": "vision_extractor", "context": {"image_path": "data/images/County/hillsclerk\\2025304183_page_2.png"}}
+{"timestamp": "2025-07-18 13:31:51", "level": "INFO", "message": "PDF conversion completed.", "module": "vision_extractor", "context": {"num_images": 2}}
+{"timestamp": "2025-07-18 13:31:51", "level": "INFO", "message": "Prepared vision prompt.", "module": "vision_extractor", "context": {"instrument_id": "2025304183"}}
+{"timestamp": "2025-07-18 13:31:51", "level": "INFO", "message": "Created output directory for text files.", "module": "vision_extractor", "context": {"output_dir": "data/extracted_text/County/hillsclerk\\2025304183"}}
+{"timestamp": "2025-07-18 13:31:51", "level": "INFO", "message": "Processing page.", "module": "vision_extractor", "context": {"instrument_id": "2025304183", "page_num": 1}}
+{"timestamp": "2025-07-18 13:32:16", "level": "INFO", "message": "Saved page response to file.", "module": "vision_extractor", "context": {"txt_filepath": "data/extracted_text/County/hillsclerk\\2025304183\\2025304183_page_1.txt"}}
+{"timestamp": "2025-07-18 13:32:16", "level": "INFO", "message": "Processing page.", "module": "vision_extractor", "context": {"instrument_id": "2025304183", "page_num": 2}}
+{"timestamp": "2025-07-18 13:32:44", "level": "INFO", "message": "Saved page response to file.", "module": "vision_extractor", "context": {"txt_filepath": "data/extracted_text/County/hillsclerk\\2025304183\\2025304183_page_2.txt"}}
+{"timestamp": "2025-07-18 13:32:44", "level": "INFO", "message": "Vision extraction completed successfully.", "module": "vision_extractor", "context": {"instrument_id": "2025304183"}}
+{"timestamp": "2025-07-18 13:32:44", "level": "INFO", "message": "Updating Firebase with vision status.", "module": "vision_extractor", "context": {"instrument_id": "2025304183"}}
+{"timestamp": "2025-07-18 13:32:45", "level": "INFO", "message": "Firebase updated successfully.", "module": "vision_extractor", "context": {"instrument_id": "2025304183"}}
+{"timestamp": "2025-07-18 13:32:45", "level": "INFO", "message": "Processed record successfully.", "module": "vision_extractor", "context": {"instrument_id": "2025304183"}}
+{"timestamp": "2025-07-18 13:32:45", "level": "INFO", "message": "Main function completed.", "module": "vision_extractor", "context": {"step": "main_end"}}
+{"timestamp": "2025-07-18 13:32:45", "level": "INFO", "message": "Vision extraction completed.", "module": "app", "context": {"step": "vision_complete"}}
+{"timestamp": "2025-07-18 13:32:45", "level": "INFO", "message": "Process completed successfully.", "module": "app", "context": {"step": "end"}}
+{"timestamp": "2025-07-18 13:36:36", "level": "INFO", "message": "Loading environment variables.", "module": "app", "context": {"step": "init"}}
+{"timestamp": "2025-07-18 13:36:36", "level": "INFO", "message": "Determining county from environment.", "module": "app", "context": {"step": "county_selection"}}
+{"timestamp": "2025-07-18 13:36:36", "level": "INFO", "message": "Importing hillsclerk module.", "module": "app", "context": {"county": "hillsclerk"}}
+{"timestamp": "2025-07-18 13:36:37", "level": "INFO", "message": "Loading environment variables from .env.", "module": "pdf_downloader", "context": {"step": "load_env"}}
+{"timestamp": "2025-07-18 13:36:37", "level": "INFO", "message": "Loading configuration.", "module": "pdf_downloader", "context": {"step": "load_config"}}
+{"timestamp": "2025-07-18 13:36:37", "level": "INFO", "message": "Loading environment variables", "module": "config", "context": {"step": "load_env"}}
+{"timestamp": "2025-07-18 13:36:37", "level": "INFO", "message": "Base configuration set", "module": "config", "context": {"config_keys": ["BASE_URL", "BASE_URL_INSTRUMENT", "HEADLESS_MODE", "DOCUMENT_TYPE", "START_DATE", "END_DATE", "COUNTY_COLLECTION", "COUNTY_NAMESPACE", "PDF_DIRECTORY"]}}
+{"timestamp": "2025-07-18 13:36:37", "level": "INFO", "message": "Retrieved download directory", "module": "config", "context": {"download_directory": "downloads"}}
+{"timestamp": "2025-07-18 13:36:37", "level": "INFO", "message": "Computed date range", "module": "config", "context": {"date_range": "07_09_2025__07_14_2025"}}
+{"timestamp": "2025-07-18 13:36:37", "level": "INFO", "message": "Computed CSV file path", "module": "config", "context": {"csv_file": "downloads\\hillsclerk\\(MTG) MORTGAGE\\07_09_2025__07_14_2025\\OfficialRecords_Results.csv"}}
+{"timestamp": "2025-07-18 13:36:37", "level": "INFO", "message": "Configuration loaded", "module": "config", "context": {"step": "config_loaded"}}
+{"timestamp": "2025-07-18 13:36:37", "level": "INFO", "message": "Creating PDF directory if not exists.", "module": "pdf_downloader", "context": {"step": "create_directory", "path": "data/County/hillsclerk"}}
+{"timestamp": "2025-07-18 13:36:37", "level": "INFO", "message": "Running main module for county: %s", "module": "app", "context": {"step": "run_module"}}
+{"timestamp": "2025-07-18 13:36:37", "level": "INFO", "message": "Starting hillsclerk main process.", "module": "main", "context": {"step": "init"}}
+{"timestamp": "2025-07-18 13:36:37", "level": "INFO", "message": "Running search scraper.", "module": "main", "context": {"step": "search_scraper"}}
+{"timestamp": "2025-07-18 13:36:37", "level": "INFO", "message": "Running detail scraper.", "module": "main", "context": {"step": "detail_scraper"}}
+{"timestamp": "2025-07-18 13:36:37", "level": "INFO", "message": "Running PDF downloader.", "module": "main", "context": {"step": "pdf_downloader"}}
+{"timestamp": "2025-07-18 13:36:37", "level": "INFO", "message": "Hillsclerk main process completed successfully.", "module": "main", "context": {"step": "end"}}
+{"timestamp": "2025-07-18 13:36:37", "level": "INFO", "message": "Checking vision and pinecone enablement.", "module": "app", "context": {"step": "check_flags"}}
+{"timestamp": "2025-07-18 13:36:37", "level": "INFO", "message": "Process completed successfully.", "module": "app", "context": {"step": "end"}}
+{"timestamp": "2025-07-18 13:38:17", "level": "INFO", "message": "Loading environment variables.", "module": "app", "context": {"step": "init"}}
+{"timestamp": "2025-07-18 13:38:17", "level": "INFO", "message": "Determining county from environment.", "module": "app", "context": {"step": "county_selection"}}
+{"timestamp": "2025-07-18 13:38:17", "level": "INFO", "message": "Importing hillsclerk module.", "module": "app", "context": {"county": "hillsclerk"}}
+{"timestamp": "2025-07-18 13:38:20", "level": "INFO", "message": "Loading environment variables from .env.", "module": "pdf_downloader", "context": {"step": "load_env"}}
+{"timestamp": "2025-07-18 13:38:20", "level": "INFO", "message": "Loading configuration.", "module": "pdf_downloader", "context": {"step": "load_config"}}
+{"timestamp": "2025-07-18 13:38:20", "level": "INFO", "message": "Loading environment variables", "module": "config", "context": {"step": "load_env"}}
+{"timestamp": "2025-07-18 13:38:20", "level": "INFO", "message": "Base configuration set", "module": "config", "context": {"config_keys": ["BASE_URL", "BASE_URL_INSTRUMENT", "HEADLESS_MODE", "DOCUMENT_TYPE", "START_DATE", "END_DATE", "COUNTY_COLLECTION", "COUNTY_NAMESPACE", "PDF_DIRECTORY"]}}
+{"timestamp": "2025-07-18 13:38:20", "level": "INFO", "message": "Retrieved download directory", "module": "config", "context": {"download_directory": "downloads"}}
+{"timestamp": "2025-07-18 13:38:20", "level": "INFO", "message": "Computed date range", "module": "config", "context": {"date_range": "07_09_2025__07_14_2025"}}
+{"timestamp": "2025-07-18 13:38:20", "level": "INFO", "message": "Computed CSV file path", "module": "config", "context": {"csv_file": "downloads\\hillsclerk\\(MTG) MORTGAGE\\07_09_2025__07_14_2025\\OfficialRecords_Results.csv"}}
+{"timestamp": "2025-07-18 13:38:20", "level": "INFO", "message": "Configuration loaded", "module": "config", "context": {"step": "config_loaded"}}
+{"timestamp": "2025-07-18 13:38:20", "level": "INFO", "message": "Creating PDF directory if not exists.", "module": "pdf_downloader", "context": {"step": "create_directory", "path": "data/County/hillsclerk"}}
+{"timestamp": "2025-07-18 13:38:20", "level": "INFO", "message": "Running main module for county: %s", "module": "app", "context": {"step": "run_module"}}
+{"timestamp": "2025-07-18 13:38:20", "level": "INFO", "message": "Starting hillsclerk main process.", "module": "main", "context": {"step": "init"}}
+{"timestamp": "2025-07-18 13:38:20", "level": "INFO", "message": "Running search scraper.", "module": "main", "context": {"step": "search_scraper"}}
+{"timestamp": "2025-07-18 13:38:20", "level": "INFO", "message": "Running detail scraper.", "module": "main", "context": {"step": "detail_scraper"}}
+{"timestamp": "2025-07-18 13:38:20", "level": "INFO", "message": "Running PDF downloader.", "module": "main", "context": {"step": "pdf_downloader"}}
+{"timestamp": "2025-07-18 13:38:20", "level": "INFO", "message": "Hillsclerk main process completed successfully.", "module": "main", "context": {"step": "end"}}
+{"timestamp": "2025-07-18 13:38:20", "level": "INFO", "message": "Checking vision and pinecone enablement.", "module": "app", "context": {"step": "check_flags"}}
+{"timestamp": "2025-07-18 13:38:20", "level": "INFO", "message": "Starting Pinecone upload.", "module": "app", "context": {"step": "pinecone_upload"}}
+{"timestamp": "2025-07-18 13:38:22", "level": "INFO", "message": "Loading environment variables", "module": "config", "context": {"step": "load_env"}}
+{"timestamp": "2025-07-18 13:38:22", "level": "INFO", "message": "Base configuration set", "module": "config", "context": {"config_keys": ["BASE_URL", "BASE_URL_INSTRUMENT", "HEADLESS_MODE", "DOCUMENT_TYPE", "START_DATE", "END_DATE", "COUNTY_COLLECTION", "COUNTY_NAMESPACE", "PDF_DIRECTORY"]}}
+{"timestamp": "2025-07-18 13:38:22", "level": "INFO", "message": "Retrieved download directory", "module": "config", "context": {"download_directory": "downloads"}}
+{"timestamp": "2025-07-18 13:38:22", "level": "INFO", "message": "Computed date range", "module": "config", "context": {"date_range": "07_09_2025__07_14_2025"}}
+{"timestamp": "2025-07-18 13:38:22", "level": "INFO", "message": "Computed CSV file path", "module": "config", "context": {"csv_file": "downloads\\hillsclerk\\(MTG) MORTGAGE\\07_09_2025__07_14_2025\\OfficialRecords_Results.csv"}}
+{"timestamp": "2025-07-18 13:38:22", "level": "INFO", "message": "Configuration loaded", "module": "config", "context": {"step": "config_loaded"}}
+{"timestamp": "2025-07-18 13:38:23", "level": "INFO", "message": "Initializing Pinecone uploader.", "module": "pinecone_uploader", "context": {"step": "init"}}
+{"timestamp": "2025-07-18 13:38:27", "level": "INFO", "message": "Processing instrument.", "module": "pinecone_uploader", "context": {"instrument_id": "2025304183"}}
+{"timestamp": "2025-07-18 13:38:27", "level": "INFO", "message": "Preparing to upload file to Pinecone.", "module": "pinecone_uploader", "context": {"instrument_id": "2025304183", "filename": "2025304183_page_1.txt", "page_num": "1"}}
+{"timestamp": "2025-07-18 13:38:35", "level": "INFO", "message": "Preparing to upload file to Pinecone.", "module": "pinecone_uploader", "context": {"instrument_id": "2025304183", "filename": "2025304183_page_2.txt", "page_num": "2"}}
+{"timestamp": "2025-07-18 13:38:44", "level": "INFO", "message": "Uploaded instrument to Pinecone.", "module": "pinecone_uploader", "context": {"instrument_id": "2025304183"}}
+{"timestamp": "2025-07-18 13:38:44", "level": "INFO", "message": "Processing instrument.", "module": "pinecone_uploader", "context": {"instrument_id": "2025304194"}}
+{"timestamp": "2025-07-18 13:38:44", "level": "INFO", "message": "Pinecone upload completed.", "module": "app", "context": {"step": "pinecone_complete"}}
+{"timestamp": "2025-07-18 13:38:44", "level": "INFO", "message": "Process completed successfully.", "module": "app", "context": {"step": "end"}}
