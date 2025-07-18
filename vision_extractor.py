@@ -5,11 +5,19 @@ import fitz  # PyMuPDF library
 from dotenv import load_dotenv
 from openai import OpenAI
 from firebase_admin import firestore
+import importlib
+
+from firebase_utils.firebase_config import init_firebase
+from utils.logging_utils import setup_logger  # Add this import for logging
+from google.api_core.retry import Retry
+
+logger = setup_logger()  # Initialize logger early
 
 # Assuming you have a firebase_config utility as per your project structure
 from firebase_utils.firebase_config import init_firebase
 
 # --- Configuration ---
+logger.info('Loading environment variables.', extra={'context': {'step': 'init'}})
 load_dotenv()
 
 # OpenAI Configuration
@@ -19,41 +27,52 @@ OPENAI_VISION_MODEL = os.getenv("OPENAI_VISION_MODEL", "gpt-4o")  # Default to g
 
 # File and Firebase Configuration
 DOCUMENT_TYPE = os.getenv("DOCUMENT_TYPE")
-PDF_DIRECTORY = os.getenv("PDF_DIRECTORY", "data/pdfs")
-IMAGE_DIRECTORY = os.getenv("IMAGE_DIRECTORY", "data/images")
-MAX_PAGES_TO_PROCESS = 2 # Process first 2 pages to balance cost and detail
+COUNTY = os.getenv("COUNTY")
+
+# Dynamically import county-specific config
+if COUNTY:
+    config_module = importlib.import_module(f'{COUNTY}.config')
+    config = config_module.load_config()
+    COUNTY_COLLECTION = config.get('COUNTY_COLLECTION')
+    COUNTY_NAMESPACE = config.get('COUNTY_NAMESPACE')
+    DOCUMENT_TYPE = config.get('DOCUMENT_TYPE')
+    
+    PDF_DIRECTORY = f"{config.get('PDF_DIRECTORY', 'data/pdfs')}/{config.get('COUNTY_COLLECTION', 'County')}/{config.get('COUNTY_NAMESPACE')}"
+    IMAGE_DIRECTORY = f"{config.get('IMAGE_DIRECTORY', 'data/images')}/{config.get('COUNTY_COLLECTION', 'County')}/{config.get('COUNTY_NAMESPACE')}/{DOCUMENT_TYPE}"
+    EXTRACTED_TEXT_DIRECTORY = f"{config.get('EXTRACTED_TEXT_DIRECTORY', 'data/extracted_text')}/{config.get('COUNTY_COLLECTION', 'County')}/{config.get('COUNTY_NAMESPACE')}/{DOCUMENT_TYPE}"
+    os.makedirs(PDF_DIRECTORY, exist_ok=True)
+    os.makedirs(IMAGE_DIRECTORY, exist_ok=True)
+    os.makedirs(EXTRACTED_TEXT_DIRECTORY, exist_ok=True)
+else:
+    PDF_DIRECTORY = os.getenv("PDF_DIRECTORY", "data/pdfs")
+    IMAGE_DIRECTORY = os.getenv("IMAGE_DIRECTORY", "data/images")
+    EXTRACTED_TEXT_DIRECTORY = os.getenv("EXTRACTED_TEXT_DIRECTORY", "data/extracted_text")
+
+MAX_PAGES_TO_PROCESS = None #2 # Process first 2 pages to balance cost and detail
 IMAGE_DPI = 200 # Set resolution for the output image, 200 is good for OCR
 
 # --- End Configuration ---
 
 # Initialize OpenAI Client
+logger.info('Initializing OpenAI Client.', extra={'context': {'step': 'openai_init'}})
 if not OPENAI_API_KEY:
+    logger.error('OPENAI_API_KEY not found in .env file.', extra={'context': {'error': 'missing_api_key'}})
     raise ValueError("❌ Error: OPENAI_API_KEY not found in the .env file.")
 client = OpenAI(api_key=OPENAI_API_KEY)
 
 
 def pdf_to_base64_images(pdf_path: str, max_pages: int) -> list:
-    """
-    Converts the first few pages of a PDF file into a list of base64 encoded images
-    using the self-contained PyMuPDF library. This avoids external dependencies like Poppler.
-    It also saves the generated images to the configured image directory.
-
-    Args:
-        pdf_path (str): The local file path to the PDF.
-        max_pages (int): The maximum number of pages to convert.
-
-    Returns:
-        list: A list of base64 encoded strings, each representing a page image.
-    """
+    logger.info('Starting PDF to base64 images conversion.', extra={'context': {'pdf_path': pdf_path, 'max_pages': max_pages}})
     base64_images = []
     instrument_id = os.path.splitext(os.path.basename(pdf_path))[0]
-    os.makedirs(IMAGE_DIRECTORY, exist_ok=True)  # Ensure image directory exists
-
+    image_output_dir = os.path.join(IMAGE_DIRECTORY, instrument_id)
+    os.makedirs(image_output_dir, exist_ok=True)  # Create instrument-specific directory for images
+    logger.info('Created output directory for images.', extra={'context': {'image_output_dir': image_output_dir}})
     try:
         with fitz.open(pdf_path) as doc:
-            # Determine the number of pages to process, ensuring we don't exceed the document's length
-            num_pages_to_process = min(len(doc), max_pages)
-            
+            logger.info('PDF opened successfully.', extra={'context': {'pdf_path': pdf_path, 'total_pages': len(doc)}})
+            num_pages_to_process = len(doc) if max_pages is None else min(len(doc), max_pages)
+            logger.info('Determined pages to process.', extra={'context': {'num_pages': num_pages_to_process}})
             for page_num in range(num_pages_to_process):
                 page = doc.load_page(page_num)
                 
@@ -61,8 +80,9 @@ def pdf_to_base64_images(pdf_path: str, max_pages: int) -> list:
                 pix = page.get_pixmap(dpi=IMAGE_DPI)
 
                 # Save the image to a file
-                image_path = os.path.join(IMAGE_DIRECTORY, f"{instrument_id}_page_{page_num + 1}.png")
+                image_path = os.path.join(image_output_dir, f"{instrument_id}_page_{page_num + 1}.png")
                 pix.save(image_path)
+                logger.info('Saved image to file.', extra={'context': {'image_path': image_path}})
                 print(f"🖼️  Saved page {page_num + 1} to {image_path}")
                 
                 # Get image bytes (PNG is a good lossless format for this)
@@ -72,11 +92,12 @@ def pdf_to_base64_images(pdf_path: str, max_pages: int) -> list:
                 base64_image = base64.b64encode(img_bytes).decode('utf-8')
                 base64_images.append(base64_image)
                 
+            logger.info('PDF conversion completed.', extra={'context': {'num_images': len(base64_images)}})
             print(f"📄 Converted {len(base64_images)} pages from PDF to images using PyMuPDF.")
     except Exception as e:
+        logger.error('Error converting PDF to images.', extra={'context': {'pdf_path': pdf_path, 'error': str(e)}})
         print(f"❌ Error converting PDF to images with PyMuPDF: {e}")
-        return [] # Return empty list on failure
-        
+        return []
     return base64_images
 
 
@@ -102,43 +123,29 @@ def get_vision_prompt():
 
 
 def extract_vision_summary(db, instrument_id: str, document_type: str):
-    """
-    Loads a downloaded PDF, sends each page to OpenAI Vision for analysis individually,
-    saves each response to a text file, and updates the corresponding Firebase document.
-
-    Args:
-        db: An initialized Firebase Firestore client.
-        instrument_id (str): The unique identifier for the document.
-        document_type (str): The type of the document (e.g., '(MTG) MORTGAGE').
-
-    Returns:
-        dict: The combined extracted vision summary, or None if an error occurred.
-    """
-    pdf_path = os.path.join(PDF_DIRECTORY, f"{instrument_id}.pdf")
+    logger.info('Starting vision extraction.', extra={'context': {'instrument_id': instrument_id, 'document_type': document_type}})
+    pdf_directory = f"{PDF_DIRECTORY}/{document_type}"  # Remove duplicated COUNTY_COLLECTION and COUNTY_NAMESPACE
+    pdf_path = os.path.join(pdf_directory, f"{instrument_id}.pdf")
     if not os.path.exists(pdf_path):
+        logger.error('PDF file not found.', extra={'context': {'instrument_id': instrument_id, 'pdf_path': pdf_path}})
         print(f"❌ Error: PDF file not found for instrument {instrument_id} at {pdf_path}")
         return None
-
     print(f"👁️‍🗨️ Starting vision extraction for Instrument: {instrument_id}")
-
     try:
-        # 1. Convert PDF to images
+        logger.info('Converting PDF to images.', extra={'context': {'instrument_id': instrument_id}})
         base64_images = pdf_to_base64_images(pdf_path, max_pages=MAX_PAGES_TO_PROCESS)
         if not base64_images:
+            logger.warning('No images generated from PDF.', extra={'context': {'instrument_id': instrument_id, 'pdf_path': pdf_path}})
             print(f"⚠️ Warning: No images were generated from {pdf_path}. Aborting vision extraction.")
             return None
-
-        # 2. Prepare content for OpenAI API
+        logger.info('Prepared vision prompt.', extra={'context': {'instrument_id': instrument_id}})
         prompt = get_vision_prompt()
-        
-        # Create output directory for text files if it doesn't exist
-        output_dir = os.path.join("data", "extracted_text", instrument_id)
+        output_dir = os.path.join(EXTRACTED_TEXT_DIRECTORY, instrument_id)
         os.makedirs(output_dir, exist_ok=True)
-        
+        logger.info('Created output directory for text files.', extra={'context': {'output_dir': output_dir}})
         all_responses = []
-        
-        # 3. Process each image individually
         for i, base64_image in enumerate(base64_images):
+            logger.info('Processing page.', extra={'context': {'instrument_id': instrument_id, 'page_num': i + 1}})
             print(f"Processing page {i + 1} of {len(base64_images)}...")
             
             # Prepare message for single image
@@ -168,53 +175,88 @@ def extract_vision_summary(db, instrument_id: str, document_type: str):
             with open(txt_filepath, 'w', encoding='utf-8') as f:
                 f.write(response_text)
             
+            logger.info('Saved page response to file.', extra={'context': {'txt_filepath': txt_filepath}})
             print(f"💾 Saved page {i + 1} response to {txt_filepath}")
-            all_responses.append(response_text)
-        
-        print(f"✅ Successfully extracted vision summary for {instrument_id}")
+            all_responses.append(f"--- Page {i + 1} ---\n{response_text}\n")
 
-        # 5. Update Firebase document with combined response
+        # Write all responses to a single file
+        txt_filename = f"{instrument_id}.txt"
+        txt_filepath = os.path.join(output_dir, txt_filename)
+        with open(txt_filepath, 'w', encoding='utf-8') as f:
+            f.write('\n'.join(all_responses))
+        
+        logger.info('Saved combined response to file.', extra={'context': {'txt_filepath': txt_filepath}})
+        print(f"💾 Saved combined response to {txt_filepath}")
+        logger.info('Vision extraction completed successfully.', extra={'context': {'instrument_id': instrument_id}})
+        print(f"✅ Successfully extracted vision summary for {instrument_id}")
+        logger.info('Updating Firebase with vision status.', extra={'context': {'instrument_id': instrument_id}})
         print("Updating Firebase with vision_summary...")
-        doc_ref = db.collection(os.getenv('COUNTY_COLLECTION')) \
-            .document(os.getenv('COUNTY_NAMESPACE')) \
-            .collection(os.getenv('DOCUMENT_TYPE')) \
+        doc_ref = db.collection(COUNTY_COLLECTION) \
+            .document(COUNTY_NAMESPACE) \
+            .collection(DOCUMENT_TYPE) \
             .document(instrument_id)
         
         doc_ref.update({
             "status": "vision_extracted"
         })
+        logger.info('Firebase updated successfully.', extra={'context': {'instrument_id': instrument_id}})
         print(f"💾 Firebase updated successfully for {instrument_id}.")
         return f"💾 Firebase updated successfully for {instrument_id}."
-
     except Exception as e:
+        logger.error('Unexpected error during vision extraction.', extra={'context': {'instrument_id': instrument_id, 'error': str(e)}})
         print(f"❌ An unexpected error occurred during vision extraction for {instrument_id}: {e}")
         return None
 
 
+def main():
+    logger.info('Starting main function.', extra={'context': {'step': 'main_start'}})
+    db = init_firebase()
+    logger.info('Initialized Firebase.', extra={'context': {'step': 'firebase_init'}})
+    
+    # Query Firebase for records with status 'pdf_downloaded' using nested path
+    collection_ref = db.collection(COUNTY_COLLECTION) \
+        .document(COUNTY_NAMESPACE) \
+        .collection(DOCUMENT_TYPE)
+    records = collection_ref.where('status', '==', 'pdf_downloaded').get(retry=Retry())
+    
+    for record in records:
+        instrument_id = record.id
+        logger.info('Processing record.', extra={'context': {'instrument_id': instrument_id}})
+        print(f"Processing {instrument_id}...")
+        try:
+            extract_vision_summary(db, instrument_id, DOCUMENT_TYPE)
+            logger.info('Processed record successfully.', extra={'context': {'instrument_id': instrument_id}})
+            print(f"✅ Processed {instrument_id}")
+        except Exception as e:
+            logger.error('Error processing record.', extra={'context': {'instrument_id': instrument_id, 'error': str(e)}})
+            print(f"❌ Error processing {instrument_id}: {e}")
+    logger.info('Main function completed.', extra={'context': {'step': 'main_end'}})
+
 if __name__ == '__main__':
+    main()
     # This block is for standalone testing of this script.
     
     # --- Test Configuration ---
     # Manually set an instrument ID that you have a downloaded PDF for.
-    TEST_INSTRUMENT_ID = "2025301684" # <-- CHANGE THIS to a valid ID for testing
-    # ---
+    # TEST_INSTRUMENT_ID = "2025301684" # <-- CHANGE THIS to a valid ID for testing
+    # # ---
 
-    if not all([DOCUMENT_TYPE]):
-        print("❌ Error: Missing required environment variables (DOCUMENT_TYPE) for testing.")
-    else:
-        print("--- Running Vision Extractor in Standalone Test Mode ---")
-        db_client = init_firebase()
-        if db_client:
-            summary = extract_vision_summary(
-                db=db_client,
-                instrument_id=TEST_INSTRUMENT_ID,
-                document_type=DOCUMENT_TYPE
-            )
-            if summary:
-                print("\n--- Extraction Complete ---")
-                print(json.dumps(summary, indent=2))
-                print("\nCheck your Firebase console to confirm the update.")
-            else:
-                print("\n--- Extraction Failed ---")
-        else:
-            print("❌ Failed to initialize Firebase.")
+    # if not all([DOCUMENT_TYPE]):
+    #     print("❌ Error: Missing required environment variables (DOCUMENT_TYPE) for testing.")
+    # else:
+    #     print("--- Running Vision Extractor in Standalone Test Mode ---")
+    #     db_client = init_firebase()
+    #     if db_client:
+    #         summary = extract_vision_summary(
+    #             db=db_client,
+    #             instrument_id=TEST_INSTRUMENT_ID,
+    #             document_type=DOCUMENT_TYPE
+    #         )
+    #         if summary:
+    #             print("\n--- Extraction Complete ---")
+    #             print(json.dumps(summary, indent=2))
+    #             print("\nCheck your Firebase console to confirm the update.")
+    #         else:
+    #             print("\n--- Extraction Failed ---")
+    #     else:
+    #         print("❌ Failed to initialize Firebase.")
