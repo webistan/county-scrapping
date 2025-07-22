@@ -206,8 +206,20 @@ def download_pdf(context, new_page, instrument_number, config):
                 view_as_pdf_button.wait_for(state="visible", timeout=10000)
                 logger.info("'View as PDF' button is visible. Clicking it", extra={'context': {'instrument_number': instrument_number, 'action': 'click_pdf'}})
                 view_as_pdf_button.click()
+                time.sleep(2)  # Wait after clicking
             except TimeoutError:
                 logger.info("'View as PDF' button not visible in time. Assuming PDF is already loaded", extra={'context': {'instrument_number': instrument_number, 'status': 'pdf_assumed'}})
+
+            # New: Check for 'Display All Pages' button inside the outer frame and click if available
+            try:
+                display_all_button = outer_frame.locator('#pdfToolbar button[name="btnOpenPdfAll"]')
+                display_all_button.wait_for(state="visible", timeout=10000)  # Increased timeout
+                logger.info("'Display All Pages' button found. Clicking it.", extra={'context': {'instrument_number': instrument_number, 'action': 'click_display_all'}})
+                display_all_button.click()
+                time.sleep(3)  # Increased wait for action to complete
+            except TimeoutError:
+                logger.info("'Display All Pages' button not found or not visible within the frame.", extra={'context': {'instrument_number': instrument_number, 'status': 'no_display_all_button'}})
+
             logger.info("Locating nested PDF iframe", extra={'context': {'instrument_number': instrument_number, 'step': 'locate_nested'}})
             nested_iframe_element = outer_frame.locator('iframe#ImageInPdf')
             nested_iframe_element.wait_for(state='visible', timeout=20000)
